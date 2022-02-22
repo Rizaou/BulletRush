@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigEnemey : EnemyModel
+public class BigEnemy : EnemyModel
 {
     
     protected override void Awake()
@@ -20,6 +20,7 @@ public class BigEnemey : EnemyModel
 
     public override void DestryoEnemy()
     {
+        base.DestryoEnemy();
         destroy = true;
         gameObject.SetActive(false);
     }

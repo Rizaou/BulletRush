@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMovement : MonoBehaviour
+public class BulletMovement : MonoBehaviour , IPoolItems
 {
     private float speed = 12;
     private float damage = 100f;
@@ -10,11 +10,12 @@ public class BulletMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Destroy(gameObject,10f);
     }
     void Update()
     {
         rb.MovePosition(rb.position + (transform.forward * Time.deltaTime * speed));
-        //transform.Translate(Vector3.forward* Time.deltaTime);
+       
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,4 +36,14 @@ public class BulletMovement : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+    void IPoolItems.ResetObj()
+    {
+
+    }
+
+    GameObject IPoolItems.getGameObject()
+    {
+        return this.gameObject;
+    }
 }

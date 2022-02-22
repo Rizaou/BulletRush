@@ -75,7 +75,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void StopAttack()
     {
-        Debug.LogWarning("StopAttack");
+        
         StopCoroutine(IFire());
         isAttack = false;
 
@@ -86,9 +86,9 @@ public class CharacterMovement : MonoBehaviour
         isAttack = true;
         while (isAttack)
         {
-            Debug.LogWarning("Fire");
+           
             fire.FireBullet();
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.1f);
         }
 
 

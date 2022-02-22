@@ -17,6 +17,7 @@ public class BasicEnemy : EnemyModel
 
     public override void DestryoEnemy()
     {
+        base.DestryoEnemy();
         destroy = true;
         gameObject.SetActive(false);
         
