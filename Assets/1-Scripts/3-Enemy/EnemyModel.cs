@@ -1,20 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyModel : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    [SerializeField] protected float health = 100f;
+    [SerializeField] protected Transform target;
+    public bool destroy = false;
+    protected NavMeshAgent agent;
 
-    // Start is called before the first frame update
-    void Awake()
+    protected Rigidbody rigidbody;
+
+    protected virtual void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
-    void Update()
+    protected virtual void Start()
     {
-        
+
     }
+    protected virtual void Update()
+    {
+        agent.SetDestination(target.position);
+    }
+
+    public virtual void TakeDamage()
+    {
+        health -= 100;
+    }
+
+
+    public virtual void DestryoEnemy()
+    {
+        Debug.Log("Destroy");
+    }
+
 }

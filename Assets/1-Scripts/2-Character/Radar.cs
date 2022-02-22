@@ -13,8 +13,11 @@ public class Radar : MonoBehaviour
 
     public Transform GetNearestEnemy()
     {
+        
+
         if (enemys.Count == 0) return null;
 
+        
         Transform temp = enemys[0].transform;
         float dist = Mathf.Infinity;
         for (int i = 0; i < enemys.Count; i++)
@@ -42,7 +45,24 @@ public class Radar : MonoBehaviour
         }
     }
 
-
+    private void Check()
+    {
+        
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            if (enemys[i].GetComponent<EnemyModel>().destroy) // Eğer düşman menzilden çıkmışsa listeden sil.
+            {
+                enemys.RemoveAt(i);
+            }
+        }
+     
+    }
+    
+    void Update()
+    {
+        Check();
+    }
+   
     // Radardan çıkan hedefi listeden sil
     private void OnTriggerExit(Collider other)
     {
@@ -55,5 +75,8 @@ public class Radar : MonoBehaviour
             }
         }
     }
+
+
+
 
 }

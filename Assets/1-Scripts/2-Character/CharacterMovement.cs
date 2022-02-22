@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody thisRigidbd;
     [SerializeField] private GameObject characterMesh;
     [SerializeField] private Radar radar;
+    [SerializeField] private Fire fire;
     public float lookSpeed = 5f;
 
     float horizontal = 0;
@@ -22,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
         thisRigidbd = gameObject.GetComponent<Rigidbody>();
     }
 
-   
+
     void FixedUpdate()
     {
         Movement();
@@ -32,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
 
 
     private void Movement()
-    {   
+    {
         // Kullanıcı ekrana dokunmuyorsa fonksiyona girme
         if (!Input.GetMouseButton(0)) return;
 
@@ -50,18 +51,48 @@ public class CharacterMovement : MonoBehaviour
 
         if (target == null) //Hedefte düşman yoksa joystick yönüne doğru bak
         {
+            StopAttack();
 
             Vector3 joysticValues = new Vector3(horizontal, 0, vertical);
 
             Quaternion lookRot = Quaternion.LookRotation((transform.position + joysticValues.normalized) - gameObject.transform.position);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRot, lookSpeed * 3 * Time.deltaTime);
         }
-        else // Hedefte düşman varsa düşmana doğru bak.
+        else // Hedefte düşman varsa düşmana doğru bak ve ateş et.
         {
 
             Quaternion lookRot = Quaternion.LookRotation(target.position - transform.position);
             transform.rotation = Quaternion.RotateTowards(this.transform.rotation, lookRot, lookSpeed * Time.deltaTime);
+
+            if (!isAttack)
+                StartCoroutine(IFire());
+
         }
+
+    }
+
+    private bool isAttack = false;
+
+    private void StopAttack()
+    {
+        Debug.LogWarning("StopAttack");
+        StopCoroutine(IFire());
+        isAttack = false;
+
+    }
+    private IEnumerator IFire()
+    {
+
+        isAttack = true;
+        while (isAttack)
+        {
+            Debug.LogWarning("Fire");
+            fire.FireBullet();
+            yield return new WaitForSeconds(.2f);
+        }
+
+
+        //isAttack = false;
 
     }
 
