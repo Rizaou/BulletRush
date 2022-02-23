@@ -9,18 +9,21 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<LevelModel> levels = new List<LevelModel>();
     [SerializeField] private GameObject currentLevel;
     //Level sayaç
-    [SerializeField] private int levelCounter = 0;
+    [SerializeField] private int levelCounter = 0; // levels listesindeki hangi level'da olduğumuzu söyler.
 
     private void Awake()
     {
         instance = this;
     }
 
+
+    // Bulunan level'daki düşman sayısı. Düşmanlar Inspector'dan elle atılmalıdır.
     public int getNumOfEnemy() => levels[levelCounter].enemys.Count;
 
     public void NextLevel()
     {
-        if (levelCounter + 1 == levels.Count)
+
+        if (levelCounter + 1 == levels.Count) // Level Counter, liste boyutunu geçerse baştan başlat.
         {
             levelCounter = 0;
             Destroy(currentLevel);
@@ -35,6 +38,7 @@ public class LevelManager : MonoBehaviour
             currentLevel = level;
         }
 
+        // Yeni level oluşturulduğunda Game Manager'a yeni düşman sayısını ata.
         GameManager.instance.setEnemyNumbers();
     }
 
@@ -43,7 +47,9 @@ public class LevelManager : MonoBehaviour
         Destroy(currentLevel);
         GameObject level = Instantiate(levels[levelCounter].gameObject, Vector3.zero, Quaternion.identity);
         currentLevel = level;
-         GameManager.instance.setEnemyNumbers();
+
+        // Yeni level oluşturulduğunda Game Manager'a yeni düşman sayısını ata.
+        GameManager.instance.setEnemyNumbers();
     }
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Radar : MonoBehaviour
 {
-    
+
     public static Radar instance;
     [SerializeField] List<GameObject> enemys = new List<GameObject>();
 
@@ -36,9 +36,11 @@ public class Radar : MonoBehaviour
 
     }
 
-    //Radara giren hedefli listeye ekle
+
     private void OnTriggerEnter(Collider other)
     {
+        //Radara giren hedefli listeye ekle
+
         if (other.gameObject.tag == "Enemy")
         {
 
@@ -49,7 +51,7 @@ public class Radar : MonoBehaviour
 
     private void Check()
     {
-
+        // Düşman ölmesi durumunda enemys listesinde bulunan null değerleri listeden kaldırmak için.
         for (int i = 0; i < enemys.Count; i++)
         {
             if (enemys[i] == null)
@@ -58,7 +60,7 @@ public class Radar : MonoBehaviour
             }
             else
             {
-                if (enemys[i].GetComponent<EnemyModel>() && enemys[i].GetComponent<EnemyModel>().destroy) // Eğer düşman menzilden çıkmışsa listeden sil.
+                if (enemys[i].GetComponent<EnemyModel>() && enemys[i].GetComponent<EnemyModel>().destroy) // Eğer düşman ölmüşse listeden sil.
                 {
                     enemys.RemoveAt(i);
                 }
@@ -74,9 +76,10 @@ public class Radar : MonoBehaviour
         Check();
     }
 
-    // Radardan çıkan hedefi listeden sil
+
     private void OnTriggerExit(Collider other)
     {
+        // Radardan çıkan hedefi listeden sil
         for (int i = 0; i < enemys.Count; i++)
         {
 
@@ -90,6 +93,7 @@ public class Radar : MonoBehaviour
 
     public void NextLevel()
     {
+        // Yeni Level'a geçince radarı sıfırla.
         enemys.Clear();
     }
 

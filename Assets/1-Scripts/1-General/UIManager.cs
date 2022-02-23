@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     [SerializeField] private Slider slider;
     [SerializeField] TMPro.TextMeshProUGUI textMesh;
-    [SerializeField] private float sliderValue = 0;
     [SerializeField] private GameObject levelUI;
     [SerializeField] private GameObject restartUI;
     [SerializeField] private GameObject nextUI;
@@ -27,13 +26,18 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sliderValue = slider.value;
+
         textMesh.text = GameManager.instance.EnemyOnStart().ToString();
     }
 
     public Slider getSlider { get { return slider; } }
     public void setSliderValue(float value)
     {
+
+        // Slider değerini value yap.
+        //Eğer 1'e eşitse sonraki Level'a geç
+
+
         slider.value = value;
         if (value >= 1)
         {
@@ -57,14 +61,14 @@ public class UIManager : MonoBehaviour
 
     public void RestartButton()
     {
-         LevelManager.instance.Restart();
+        LevelManager.instance.Restart();
         ShowLevelUI();
     }
 
     public void ShowLevelUI()
     {
         // Normal UI göster
-        
+
         levelUI.SetActive(true);
         nextUI.SetActive(false);
         restartUI.SetActive(false);
@@ -85,7 +89,7 @@ public class UIManager : MonoBehaviour
 
     public void NewLevelButton()
     {
-        
+
         LevelManager.instance.NextLevel();
         ShowLevelUI();
 

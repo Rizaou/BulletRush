@@ -6,17 +6,18 @@ public class CharacterMovement : MonoBehaviour
 {
 
     [SerializeField] private FloatingJoystick joystick;
-    [SerializeField] private float normalSpeed = 5f;
+    [SerializeField] private float normalSpeed = 5f; // Normal yürüme hızı
     private float tempSpeed;
-    [SerializeField] private float slowSpeed = 2f;
+    [SerializeField] private float slowSpeed = 2f; // Ateş edildiğindeki hız
 
     private Rigidbody thisRigidbd;
-    [SerializeField] private GameObject characterMesh;
+    [SerializeField] private GameObject characterMesh; // Karakterin Mesh kısmı düşmanlara göre döneceği için ayrı bir değişken olarak alındı.
     [SerializeField] private Radar radar;
     [SerializeField] private Fire fire;
 
     public float lookSpeed = 5f;
 
+    // Joystic horizontal ve vertical değerleri
     float horizontal = 0;
     float vertical = 0;
 
@@ -78,6 +79,7 @@ public class CharacterMovement : MonoBehaviour
 
     }
 
+    // Coroutine'nin birden fazla kez çalışmasını engellemek için isAttack ile bir sefer çalışıp çalışmadığını kontrol ediyoruz.
     private bool isAttack = false;
 
     private void StopAttack()
@@ -91,13 +93,12 @@ public class CharacterMovement : MonoBehaviour
     {
         tempSpeed = slowSpeed;
         isAttack = true;
+
         while (isAttack)
         {
-
             fire.FireBullet();
             yield return new WaitForSeconds(.1f);
         }
-
 
         isAttack = false;
 

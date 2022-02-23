@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public LevelManager levelManager;
     public GameObject player;
     public Radar radar;
-    public float enemyNumberOnStart = 0;
-    public double ratio = 0;
+    public float enemyNumberOnStart = 0; // Düşman sayısını ekranda göstermek için değişken
+    public double ratio = 0; // Sahnede kalan düşman ile level başında bulunan düşman oranı. Slider için.
 
     void Awake()
     {

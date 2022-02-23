@@ -38,7 +38,6 @@ public class EnemyModel : MonoBehaviour, IPoolItems
     public virtual void DestryoEnemy()
     {
         gameManager.EnemyDestroyed();
-        Debug.Log("Destroy");
     }
 
 

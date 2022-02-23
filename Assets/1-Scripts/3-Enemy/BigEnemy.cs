@@ -100,12 +100,6 @@ public class BigEnemy : EnemyModel
         agent.SetDestination(target);
 
 
-
-
-
-
-
-
     }
 
     public override void DestryoEnemy()
