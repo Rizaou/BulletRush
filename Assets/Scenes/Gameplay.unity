@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 8144426576009986810, guid: ed3e16f7f2f656949806ff54b1b278a6, type: 3}
-  - {fileID: 8362269673513328045, guid: 02744d44d16db404cbd8763413b1f7e9, type: 3}
+  - {fileID: 1626472746278074895, guid: 3904a1b5b90582743815eb221aac48ef, type: 3}
   currentLevel: {fileID: 1150554032}
   levelCounter: 0
 --- !u!4 &1150912649
@@ -1884,14 +1884,6 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 794654255}
-    - target: {fileID: 351851982417275646, guid: fd93c6b4e07772d42be689109899d00b, type: 3}
-      propertyPath: lookSpeed
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 351851983079624420, guid: fd93c6b4e07772d42be689109899d00b, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd93c6b4e07772d42be689109899d00b, type: 3}
 --- !u!1001 &8144426575010958664
@@ -2552,6 +2544,10 @@ PrefabInstance:
     - target: {fileID: 8144426576009986808, guid: ed3e16f7f2f656949806ff54b1b278a6, type: 3}
       propertyPath: m_Name
       value: Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144426576009986808, guid: ed3e16f7f2f656949806ff54b1b278a6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8144426576009986809, guid: ed3e16f7f2f656949806ff54b1b278a6, type: 3}
       propertyPath: m_RootOrder

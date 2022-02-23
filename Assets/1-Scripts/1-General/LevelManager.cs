@@ -20,18 +20,18 @@ public class LevelManager : MonoBehaviour
 
     public void NextLevel()
     {
-        if(levelCounter +1 == levels.Count)
+        if (levelCounter + 1 == levels.Count)
         {
             levelCounter = 0;
             Destroy(currentLevel);
-            GameObject level = Instantiate(levels[levelCounter].gameObject,Vector3.zero,Quaternion.identity);
+            GameObject level = Instantiate(levels[levelCounter].gameObject, Vector3.zero, Quaternion.identity);
             currentLevel = level;
         }
         else
         {
             levelCounter++;
             Destroy(currentLevel);
-            GameObject level = Instantiate(levels[levelCounter].gameObject,Vector3.zero,Quaternion.identity);
+            GameObject level = Instantiate(levels[levelCounter].gameObject, Vector3.zero, Quaternion.identity);
             currentLevel = level;
         }
 
@@ -40,7 +40,10 @@ public class LevelManager : MonoBehaviour
 
     public void Restart()
     {
-        
+        Destroy(currentLevel);
+        GameObject level = Instantiate(levels[levelCounter].gameObject, Vector3.zero, Quaternion.identity);
+        currentLevel = level;
+         GameManager.instance.setEnemyNumbers();
     }
 
 

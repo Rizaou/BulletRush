@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Radar : MonoBehaviour
 {
-    //! Karakter alandaki karakterlere random sıkıyor.
-    //! En yakındaki karaktere bakacak
-
+    
+    public static Radar instance;
     [SerializeField] List<GameObject> enemys = new List<GameObject>();
 
 
-
+    private void Awake()
+    {
+        instance = this;
+    }
     public Transform GetNearestEnemy()
     {
 

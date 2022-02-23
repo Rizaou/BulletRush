@@ -57,7 +57,8 @@ public class UIManager : MonoBehaviour
 
     public void RestartButton()
     {
-
+         LevelManager.instance.Restart();
+        ShowLevelUI();
     }
 
     public void ShowLevelUI()

@@ -47,7 +47,9 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         UIManager.instance.Restart();
-
+        UIManager.instance.setSliderValue(0f);
+        radar.NextLevel();
+        UIManager.instance.Restart();
     }
 
 
