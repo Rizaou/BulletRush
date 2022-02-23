@@ -11,7 +11,7 @@ public class BasicEnemy : EnemyModel
 
     protected override void Update()
     {
-        base.Update();
+        MoveToTarget();
        
     }
 
@@ -30,5 +30,10 @@ public class BasicEnemy : EnemyModel
         {
             DestryoEnemy();
         }
+    }
+
+    protected override void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
     }
 }

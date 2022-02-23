@@ -20,10 +20,10 @@ public class EnemyModel : MonoBehaviour, IPoolItems
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         //rigidbody = GetComponent<Rigidbody>();
     }
-  
+
     protected virtual void Update()
     {
-        agent.SetDestination(target.position);
+
     }
 
     public virtual void TakeDamage()
@@ -31,22 +31,35 @@ public class EnemyModel : MonoBehaviour, IPoolItems
         health -= 100;
     }
 
-
+    protected virtual void MoveToTarget()
+    {
+        agent.SetDestination(target.position);
+    }
     public virtual void DestryoEnemy()
     {
         gameManager.EnemyDestroyed();
         Debug.Log("Destroy");
     }
 
-    
-   void IPoolItems.ResetObj()
-   {
 
-   }
+    void IPoolItems.ResetObj()
+    {
 
-   GameObject IPoolItems.getGameObject()
-   {
-       return  this.gameObject;
-   }
+    }
+
+    GameObject IPoolItems.getGameObject()
+    {
+        return this.gameObject;
+    }
+
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameManager.instance.Restart();
+            { Debug.LogError("Game Over"); }
+        }
+
+    }
 
 }

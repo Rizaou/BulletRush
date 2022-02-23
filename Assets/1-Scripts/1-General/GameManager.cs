@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] UIManager uIManager;
-    [SerializeField] LevelManager levelManager;
-    [SerializeField] Radar radar;
-    [SerializeField] float enemyNumberOnStart = 0;
-    [SerializeField] double ratio = 0;
+    public static GameManager instance;
+    public UIManager uIManager;
+    public LevelManager levelManager;
+    public GameObject player;
+    public Radar radar;
+    public float enemyNumberOnStart = 0;
+    public double ratio = 0;
 
+    void Awake()
+    {
+
+        instance = this;
+
+    }
     void Start()
     {
         enemyNumberOnStart = levelManager.getNumOfEnemy();
     }
-    private void Update()
-    {
 
-
-    }
 
 
     public void EnemyDestroyed()
@@ -26,19 +30,23 @@ public class GameManager : MonoBehaviour
         float enemyNum = levelManager.getNumOfEnemy();
 
         enemyNumberOnStart--;
-
-        Debug.Log("enemy num " + enemyNum + " enemyNumberInStart" + enemyNumberOnStart );
         ratio = enemyNumberOnStart / enemyNum;
 
         if (enemyNumberOnStart == 0)
         {
-            uIManager.setSliderValue(1);
+            UIManager.instance.setSliderValue(1);
         }
         else
         {
-            uIManager.setSliderValue(1 - (float)ratio);
+            UIManager.instance.setSliderValue(1 - (float)ratio);
         }
 
+
+    }
+
+    public void Restart()
+    {
+        UIManager.instance.Restart();
 
     }
 
@@ -46,14 +54,27 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         Debug.Log("Yeni level");
+        UIManager.instance.setSliderValue(0f);
         radar.NextLevel();
-        levelManager.NextLevel();
-        enemyNumberOnStart = levelManager.getNumOfEnemy();
+
+        UIManager.instance.ShowNextLevelUI();
+
     }
 
+    public void setEnemyNumbers()
+    {
+        enemyNumberOnStart = levelManager.getNumOfEnemy();
+    }
 
     public int EnemyOnStart()
     {
         return (int)enemyNumberOnStart;
     }
+
+    public GameObject GetPlayer()
+    {
+        return instance.player;
+    }
+
+
 }

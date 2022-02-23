@@ -65,7 +65,10 @@ public class CharacterMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(this.transform.rotation, lookRot, lookSpeed * Time.deltaTime);
 
             if (!isAttack)
+            {
                 StartCoroutine(IFire());
+            }
+
 
         }
 
@@ -75,7 +78,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void StopAttack()
     {
-        
+
         StopCoroutine(IFire());
         isAttack = false;
 
@@ -86,7 +89,7 @@ public class CharacterMovement : MonoBehaviour
         isAttack = true;
         while (isAttack)
         {
-           
+
             fire.FireBullet();
             yield return new WaitForSeconds(.1f);
         }

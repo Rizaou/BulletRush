@@ -5,7 +5,6 @@ using UnityEngine;
 public class BulletMovement : MonoBehaviour , IPoolItems
 {
     private float speed = 12;
-    private float damage = 100f;
     private Rigidbody rb;
     void Start()
     {
